@@ -1,0 +1,233 @@
+<html>
+    <head>
+        <!--link rel="stylesheet" href="css/style.css"/-->
+        <style>
+            body {
+                background-color: rgb(250, 250, 250);
+            }
+            .A {
+                width: inherit;
+                background-color: rgb(211, 211, 211);
+                color: rgb(90, 90, 90);
+                margin: 0;
+                padding: 1%;
+            }
+            .B {
+                width: inherit;
+                height: 200px;
+                background-color: rgb(90, 90, 90);
+                color: rgb(240, 240, 240);
+                margin: 0;
+                padding: 1%;
+            }
+            .A h2 {
+                text-align: center;
+                color:rgb(100, 100, 200);
+            }
+            .A1 {
+                width: 98%;
+                height: 200px;
+                margin: 1%;
+                background-color: rgb(250, 250, 250);
+                border-radius: 20px;
+            }
+            .A2 {
+                width: 98%;
+                height: 400px;
+                margin: 1%;
+                background-color: rgb(250, 250, 250);
+                border-radius: 20px;
+                overflow: auto;
+            }
+            .B1 {
+                width: 220px;
+                height: 220px;
+                margin: 5%;
+                text-align: center;
+                background-color: rgb(211, 211, 211);
+                box-shadow:  2px 2px 2px rgb(250, 250, 250), -2px -2px 2px rgb(2, 2, 2);
+                display: inline-block;
+                border-radius: 20px;
+                overflow: auto;
+            }
+            .head {
+                text-align: center;
+                width: inherit;
+                height: 60px;
+                background-color: rgb(250, 250, 250);
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+            }
+            .head p {
+                margin: auto;
+                font: 32px arial bold;
+                color: rgb(62, 196, 230);
+                text-shadow: -1px -1px 1px blue ,-1px -1px 1px blue;
+            }
+            .mylist {
+                list-style-type: none;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                background-color: rgb(240, 240, 240);
+            }
+            .mylist li {
+                float: left;
+            }
+            .mylist li a {
+                display: block;
+                color: rgb(90, 90, 90);
+                text-align: center;
+                padding: 16px;
+                text-decoration: none;
+            }
+            .mylist li a:hover {
+                background-color: rgb(90, 90, 90);
+                color: rgb(240, 240, 240);
+            }
+            .slidershow-container {
+                max-width: 1000px;
+                height: 200px;
+                position: relative;
+                margin: auto;
+            }
+            .mySlides {
+                display: none;
+                width: 100%;
+            }
+            .fade {
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+            @keyframes fade {
+                from {opacity: .4;}
+                to {opacity: 1;}
+            }
+            .tab {
+                background-color: rgb(150, 150, 150);
+            }
+            .tab button {
+                background-color: rgb(150, 150, 150);
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s;
+                width: 15%;
+                padding: 5px;
+                border-top-right-radius: 20px;
+                border-top-left-radius: 20px;
+                border-width: 1px;
+                border-right-style: solid;
+                border-left-style: inset;
+            }
+            .tab button.active {
+                background-color: rgb(250, 250, 250);
+                width: 50%;
+            }
+            #main {
+                display: block;
+            }
+            #phone {
+                display: none;
+            }
+            #email {
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="css/prism.css"/>
+        <script src="js/prism.js"></script>
+    </head>
+    <body>
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab('0')">Main</button>
+            <button class="tablinks" onclick="openTab('1')">Phone</button>
+            <button class="tablinks" onclick="openTab('2')">Email</button>
+        </div><br/><br/>
+        <div id="main">
+            <div class="head"><p>God of Code</p>   </div>
+            <ul class="mylist">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Apps</a></li>
+                <li><a href="#">Blogs</a></li>
+            </ul>
+            <div class="slidershow-container">
+                <div class="mySlides fade"><div style="width: inherit; height: 200px; background-color: blue;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 200px; background-color: green;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 200px; background-color: yellow;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 200px; background-color: red;"></div></div>
+            </div>
+            <script>
+                var slideIndex=0;
+                function openTab(v) {
+                    var ttabs=document.getElementsByClassName("tablinks");
+                    
+                    if(v=='0') {
+                        document.getElementById("main").style.display="block";
+                        document.getElementById("phone").style.display="none";
+                        document.getElementById("email").style.display="none";
+                        ttabs[0].className="tablinks active";
+                        ttabs[1].className="tablinks";
+                        ttabs[2].className="tablinks";
+                    }
+                    else if(v=='1') {
+                        document.getElementById("main").style.display="none";
+                        document.getElementById("phone").style.display="block";
+                        document.getElementById("email").style.display="none";
+                        ttabs[1].className="tablinks active";
+                        ttabs[0].className="tablinks";
+                        ttabs[2].className="tablinks";
+                    }
+                    else {
+                        document.getElementById("main").style.display="none";
+                        document.getElementById("phone").style.display="none";
+                        document.getElementById("email").style.display="block";
+                        ttabs[2].className="tablinks active";
+                        ttabs[1].className="tablinks";
+                        ttabs[0].className="tablinks";
+                    }
+                }
+                function showSlide() {
+                    var slides=document.getElementsByClassName("mySlides");
+                    for(var i=0;i<slides.length;i++)
+                        slides[i].style.display="none";
+                    slideIndex++;
+                    if(slideIndex>slides.length)
+                        slideIndex=1;
+                    slides[slideIndex-1].style.display="block";
+                    setTimeout(showSlide,2000);
+                }
+                showSlide();
+            </script>
+            <div class="A">
+                <h2>Text and Quotes</h2>
+                <div class="A1"></div>
+                <h2>Apps available</h2>
+                <center>
+                    <div class="B1">For Android</div>
+                    <div class="B1">For IOS</div>
+                </center>
+                <h2>Blogs</h2>
+                <div class="A2">
+                    <pre>
+                        <code class="language-java">
+                            class Program {
+                                public static void main(String args[]) {
+                                    System.out.println("Hello World");
+                                }
+                            }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div class="B">
+
+            </div>
+        </div>
+        <div id="phone">9583672357</div>
+        <div id="email">subhasish9583672357@gmail.com</div>
+    </body>
+</html>

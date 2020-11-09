@@ -1,0 +1,197 @@
+<html>
+    <body>
+        <center>
+            <canvas id="canvas" width="480" height="800">Not supported</canvas>
+        </center>
+        <script>
+            var canvas=document.getElementById("canvas");
+            var context=canvas.getContext("2d");
+            var area=new Array(canvas.width);
+            for(var i=0;i<area.length;i++)
+                area[i]=new Array(canvas.height);
+            for(var i=0;i<canvas.width;i++)
+                for(var j=0;j<canvas.height;j++)
+                    area[i][j]=0;
+            class Circle {
+                constructor(r) {
+                    this.radius=r;
+                    this.x=0;
+                    this.y=0;
+                }
+                setRadius(r) {
+                    this.radius=r;
+                }
+                getRadius() {
+                    return this.radius;
+                }
+                setXY(a,b) {
+                    this.x=a+this.radius;
+                    this.y=b+this.radius;
+                }
+                setCenterXY(a,b) {
+                    this.x=a;
+                    this.y=b;
+                }
+                getX() {
+                    return this.x-this.radius;
+                }
+                getY() {
+                    return this.y-this.radius;
+                }
+                getWidth() {
+                    return 2*this.radius;
+                }
+                getHeight() {
+                    return 2*this.radius;
+                }
+                drawCircle(con,c) {
+                    con.beginPath();
+                    con.strokeStyle=c;
+                    con.arc(this.x,this.y,this.radius,0,2*Math.PI,true);
+                    con.stroke();
+                }
+                occupyArea() {
+                    for(var i=-1*this.getRadius();i<=this.getRadius();i++) {
+                        for(var j=-1*Math.sqrt(this.getRadius()*this.getRadius()-i*i);j<=Math.sqrt(this.getRadius()*this.getRadius()-i*i);j++) {
+                            area[i+this.x][j+this.y]+=1;
+                        }
+                    }
+                }
+                clearArea() {
+                    for(var i=-1*this.getRadius();i<=this.getRadius();i++) {
+                        for(var j=-1*Math.sqrt(this.getRadius()*this.getRadius()-i*i);j<=Math.sqrt(this.getRadius()*this.getRadius()-i*i);j++) {
+                            area[i+this.x][j+this.y]-=1;
+                        }
+                    }
+                }
+                collideWith(v) {
+                    v.occupyArea();
+                    for(var i=-1*this.getRadius();i<=this.getRadius();i++) {
+                        for(var j=-1*Math.sqrt(this.getRadius()*this.getRadius()-i*i);j<=Math.sqrt(this.getRadius()*this.getRadius()-i*i);j++) {
+                            if(area[i+this.x][j+this.y]<=1) 
+                                return true;
+                        }
+                    }
+                    //v.clearArea();
+                    return false;
+                }
+                fillCircle(con,c) {
+                    con.beginPath();
+                    con.fillStyle=c;
+                    con.arc(this.x,this.y,this.radius,0,2*Math.PI,true);
+                    con.fill();
+                }
+            };
+            class Fence {
+                constructor(s,e,d,b) {
+                    this.start=s;
+                    this.end=e;
+                    this.y=d;
+                    this.isUp=b;
+                }
+                occupyArea() {
+                    for(var i=this.start;i<=this.end;i++) {
+                        if(this.isUp)
+                        for(var j=this.y;j<=this.y+20;j++) {
+                            area[i][j]+=1;
+                        }
+                        else
+                        for(var j=this.y;j>=this.y-20;j--) {
+                            area[i][j]+=1;
+                        }
+                    }
+                }
+                clearArea() {
+                    for(var i=this.start;i<=this.end;i++) {
+                        if(this.isUp)
+                        for(var j=this.y;j<=this.y+20;j++) {
+                            area[i][j]-=1;
+                        }
+                        else
+                        for(var j=this.y;j>=this.y-20;j--) {
+                            area[i][j]-=1;
+                        }
+                    }
+                }
+                drawFence(con,c) {
+                    con.beginPath();
+                    con.strokeStyle=c;
+                    con.moveTo(this.start,this.y);
+                    var t=0;
+                    var t1=20;
+                    if(this.isUp)
+                        t1=20;
+                    else
+                        t1=-20;
+                    for(var i=this.start;i<this.end;i+=10) {
+                        con.lineTo(i,this.y+t);
+                        if(t==t1)
+                            t=0;
+                        else
+                            t=t1;
+                    }
+                    con.lineTo(this.end,this.y);
+                    con.lineTo(this.start,this.y);
+                    con.stroke();
+                }
+                fillFence(con,c) {
+                    con.beginPath();
+                    con.fillStyle=c;
+                    con.moveTo(this.start,this.y);
+                    var t=0;
+                    var t1=20;
+                    if(this.isUp)
+                        t1=20;
+                    else
+                        t1=-20;
+                    for(var i=this.start;i<this.end;i+=10) {
+                        con.lineTo(i,this.y+t);
+                        if(t==t1)
+                            t=0;
+                        else
+                            t=t1;
+                    }
+                    con.lineTo(this.end,this.y);
+                    con.lineTo(this.start,this.y);
+                    con.fill();
+                    con.strokeStyle="blue";
+                    con.stroke();
+                }
+            }
+            var cir=new Circle(10);
+            //alert(cir.getRadius());
+            var f1=new Fence(0,canvas.width,0,true);
+            var f2=new Fence(0,canvas.width,canvas.height,false);
+            /*context.beginPath();
+            context.moveTo(60,60);
+            context.lineTo(70,80);
+            context.lineTo(80,60);
+            context.lineTo(60,60);
+            context.stroke();*/
+            var gravity=4;
+            var o=5;
+            cir.setCenterXY(canvas.width/2,canvas.height/2);
+            //f2.occupyArea();
+            alert(area.length+" "+area[0].length);
+            area[0][1]=1;
+            for(var i=0;area.length;i++)
+                for(var j=0;j<area[i].length;j++)
+                    if(area[i][j]>0)
+                        alert(i+" "+j+" "+area[i][j]);
+            function render() {
+                //alert("sdfghj");
+                o+=5;
+                context.clearRect(0,0,canvas.width,canvas.height);
+                context.strokeRect(0,0,canvas.width,canvas.height);
+                cir.setXY(cir.getX(),(cir.getY())+gravity);
+                context.fillText(o,70,70,40);
+                cir.fillCircle(context,"yellow");
+                f1.fillFence(context,"rgb(150,150,150)");
+                f2.fillFence(context,"rgb(150,150,150)");
+                //if(cir.collideWith(f2))
+                //    alert("collide");
+            }
+            var r=setInterval(render,80);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>God of code</title>
+        <style>
+            .overlay {
+                position: fixed;
+                top:25%;
+                left:25%;
+                width: 50%;
+                height: 50%;
+                border-radius: 50%;
+                border-color: rgb(122, 122, 124);
+                border-width: 5px;
+                border-style: dashed;
+                z-index: 1;
+                background-color: rgba(0, 0, 0, 0.8);
+                overflow: hidden;
+                transition: 0.5s;
+            }
+            .overlay-content {
+                position: relative;
+                top:33%;
+                width: 100%;
+                text-align: center;
+            }
+            .overlay a {
+                padding: 8px;
+                text-decoration: none;
+                font-size: 36px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
+            .overlay a:hover, .overlay a:focus {
+                color: #f1f1f1;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <script>
+            function openNav() {
+                document.getElementById("myNav").style.width = "100%";
+            }
+
+            function closeNav() {
+                document.getElementById("myNav").style.width = "0%";
+            }
+        </script>
+        <div class="overlay" id="myNav">
+            <div class="overlay-content">
+                <a href="javascript:closeNav()">Welcome</a>
+            </div>
+        </div>
+        <h1>My first website</h1>
+        <p>
+            Hi , I am God of code .<br/>This is my first website under construction .<br/>
+            It will contain codes lots of codes .
+        </p>
+    </body>
+</html>

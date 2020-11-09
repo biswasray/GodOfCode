@@ -1,0 +1,251 @@
+@font-face {
+    font-family: plok;
+    src:url(../fonts/Plok.ttf);
+}
+@font-face {
+    font-family: LCD;
+    src: url(../fonts/LCD.ttf);
+}
+body {
+    background-color: rgb(250, 250, 250);
+}
+.A {
+    width: inherit;
+    background-color: rgb(211, 211, 211);
+    color: rgb(90, 90, 90);
+    margin: 0;
+    padding: 1%;
+}
+.B {
+    width: inherit;
+    height: fit-content;
+    background-color: rgb(240, 240, 240);
+    color: rgb(90, 90, 90);
+    margin: 0;
+    padding: 1%;
+    border-radius: 20px;
+}
+h2 {
+    font-weight: bold;
+    margin-bottom: 0%;
+    margin-top: 2%;
+    text-align: center;
+    color:rgb(6, 6, 241);
+}
+.A1 {
+    width: 94%;
+    height: fit-content;
+    margin: 1%;
+    padding: 2%;
+    background-color: rgb(250, 250, 250);
+    border-radius: 20px;
+    font-size:20px;
+    
+}
+.A2 {
+    width: 98%;
+    height: fit-content;
+    margin: 1%;
+    background-color: rgb(240, 240, 240);
+    border-radius: 20px;
+    overflow: auto;
+    white-space: nowrap;
+}
+.B1 {
+    width: 220px;
+    height: 220px;
+    margin: 5%;
+    text-align: center;
+    background-color: rgb(211, 211, 211);
+    box-shadow:  2px 2px 2px rgb(250, 250, 250), -2px -2px 2px rgb(2, 2, 2);
+    display:inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    word-wrap: break-word;
+    white-space: normal;
+}
+.label {
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5%;
+}
+.description-holder {
+    width: 50%;
+    height: 400px;
+    margin-top: 2%;
+    margin-right: 3%;
+    text-align: center;
+    float: right;
+    background-color: rgb(246, 246, 246);
+    box-shadow:inset 2px 2px 2px rgb(255, 255, 255),inset -2px -2px 2px rgb(211, 211, 211);
+    display:inline-block;
+    border-radius: 20px;
+}
+.description {
+    margin: 1%;
+    font-size: large;
+}
+.photon-container {
+    width: 225px;
+    height: 300px;
+    margin-top: 2%;
+    margin-left: 4%;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    box-shadow:  2px 2px 2px rgb(255, 255, 255), -2px -2px 2px rgb(211, 211, 211);
+    display:inline-block;
+    border-radius: 20px;
+}
+.container {
+    margin-top: 2%;
+    margin-left: 4%;
+    display: inline-block;
+}
+.review {
+    font-weight: bold;
+}
+.photon {
+    margin: 2.5%;
+    width: 95%;
+    height: 95%;
+    border-radius: 20px;
+}
+.photo {
+    margin-top: 4%;
+    width: 75%;
+    height: 75%;
+    border-radius: 20px;
+}
+.B3 {
+    width: 220px;
+    height: 220px;
+    margin: 5%;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    box-shadow:  2px 2px 2px rgb(255, 255, 255), -2px -2px 2px rgb(211, 211, 211);
+    display:inline-block;
+    border-radius: 20px;
+    overflow: auto;
+    cursor: pointer;
+}
+.head {
+    text-align: center;
+    width: inherit;
+    height: 60px;
+    background-color: rgb(250, 250, 250);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.head p {
+    margin: auto;
+    font-family: plok;
+    font-size: 32px;
+    color: rgb(62, 196, 230);
+    text-shadow: -1px -1px 1px blue ,-1px -1px 1px blue;
+}
+.mylist {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(240, 240, 240);
+}
+.mylist li {
+    float: left;
+}
+.mylist li a {
+    display: block;
+    color: rgb(90, 90, 90);
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+.mylist li a:hover {
+    background-color: rgb(90, 90, 90);
+    color: rgb(240, 240, 240);
+}
+.slidershow-container {
+    max-width: 1000px;
+    height: 350px;
+    position: relative;
+    margin: auto;
+}
+.mySlides {
+    display: none;
+    width: 100%;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade {
+    from {opacity: .4;}
+    to {opacity: 1;}
+}
+.owl {
+    overflow-y: hidden;
+    overflow-x: scroll; 
+    height: 330px; 
+    width: 100%; 
+    white-space: nowrap;
+}
+.tab {
+    background-color: rgb(150, 150, 150);
+}
+.tab button {
+    background-color: rgb(150, 150, 150);
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 15%;
+    padding: 5px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-width: 1px;
+    border-right-style: solid;
+    border-left-style: inset;
+}
+.tab button.active {
+    background-color: rgb(250, 250, 250);
+    width: 50%;
+}
+#main {
+    display: block;
+}
+#phone {
+    display: none;
+}
+#email {
+    display: none;
+}
+.book-name {
+    margin-top: 0%;
+    color: rgb(250, 250, 250);
+    background-color: rgb(90, 90, 90);
+    padding: 1%;
+}
+.book-name0 {
+    margin-top: 0%;
+    color: rgb(250, 250, 250);
+    background-color: rgb(90, 90, 90);
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow:inset 2px 2px 2px rgb(255, 255, 255),inset -2px -2px 2px rgb(0, 0, 0);
+}
+.download {
+    display: block;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    box-shadow:inset 2px 2px 2px rgb(255, 255, 255),inset -2px -2px 2px rgb(0, 0, 0);
+    width: fit-content;
+    height: fit-content;
+}

@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/prism.css"/>
+        <script src="js/prism.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="head"><p>God of Code</p>   </div>
+            <ul class="mylist">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="javascript:alert('Under construction');">Codings</a></li>
+                <li><a href="javascript:alert('Under construction');">About us</a></li>
+                <li><a href="javascript:alert('Under construction');">Contact us</a></li>
+            </ul>
+            <div class="slidershow-container">
+                <div class="mySlides fade"><div style="width: inherit; height: 350px; background-position: center; background-image: url(images/back1.jpg); background-size: inherit;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 350px; background-position: center; background-image: url(images/back2.jpg); background-size: inherit;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 350px; background-position: center; background-image: url(images/back3.jpg); background-size: inherit;"></div></div>
+                <div class="mySlides fade"><div style="width: inherit; height: 350px; background-position: center; background-image: url(images/back4.jpg); background-size: inherit;"></div></div>
+            </div>
+            <script>
+                var slideIndex=0;
+                function showSlide() {
+                    var slides=document.getElementsByClassName("mySlides");
+                    for(var i=0;i<slides.length;i++)
+                        slides[i].style.display="none";
+                    slideIndex++;
+                    if(slideIndex>slides.length)
+                        slideIndex=1;
+                    slides[slideIndex-1].style.display="block";
+                    setTimeout(showSlide,2000);
+                }
+                showSlide();
+            </script>
+            <div class="A">
+                <div class="A1">
+                    We consist lots of resources like (PDF ,Images, Raw codes , notes) of Information Technology or Computer science for students .<br/>
+                    There are some books and notes related to academic courses like BCA ,MCA ,Bsc. Comp sc ,Msc. Comp sc ,Bsc. ITM ,Msc. ITM ,BTech. Comp sc etc .<br/>
+                    The resources are organised according to the accademic syllabus <br/><br/>
+                    <center>You can download books and copy codes freely .</center>
+                </div><br/>
+                <h2>Top downloaded books</h2>
+                <center>
+                    <div class="owl" >
+                        <a class="link" href="books/cppprog/book-single.html">
+                            <div class="B1">
+                                <img class="photo" src="books/cppprog/image.png"/>
+                                <p class="label">C++ Programmming</p>
+                            </div>
+                        </a>
+                        <a class="link" href="books/os/book-single.html">
+                            <div class="B1">
+                                <img class="photo" src="books/os/image.png"/>
+                                <p class="label">Operating System</p>
+                            </div>
+                        </a>
+                        <a class="link" href="books/coa/book-single.html">
+                            <div class="B1">
+                                <img class="photo" src="books/coa/image.png"/>
+                                <p class="label">Computer Organisation & Architecture</p>
+                            </div>
+                        </a>
+                        <a class="link" href="books/jprog/book-single.html">
+                            <div class="B1">
+                                <img class="photo" src="books/jprog/image.png"/>
+                                <p class="label">Java Complete reference</p>
+                            </div>
+                        </a>
+                    </div>
+                </center>
+                <h2>Categories</h2>
+                <div class="A2">
+                    <center>
+                        <a href="books.html?category=IT theory book"><div class="B3"><img style="width: 100%; height: 100%;" src="images/ittheory.png"></div></a>
+                        <a href="books.html?category=programming book"><div class="B3"><img style="width: 100%; height: 100%;" src="images/coding.png"></div></a><br/>
+                        <a href="books.html?category=math book"><div class="B3"><img style="width: 100%; height: 100%;" src="images/maths.png"></div></a>
+                        <a href="books.html?category=others"><div class="B3"><img style="width: 100%; height: 100%;" src="images/others.png"></div></a>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div id="phone">9583672357</div>
+        <div id="email">subhasish9583672357@gmail.com</div>
+        <script src="json/data.json"></script>
+        <script src="json/paths.json"></script>
+        <script>
+            /*var dat=JSON.parse(book);
+            var links=document.getElementsByClassName("link");
+            var photos=document.getElementsByClassName("photo");
+            var labels=document.getElementsByClassName("label");
+            for(var i=0;i<4;i++) {
+                links[i].href=dat[i].src+"book-single.html";
+                photos[i].src=dat[i].src+"image.png";
+                labels[i].innerHTML=dat[i].name;
+            }
+            var path=(paths);*/
+            /*var s = document.createElement('script');
+            document.body.appendChild(s);
+            s.src=path[3]+"details.json";
+            var s1 = document.createElement('script');
+            document.body.appendChild(s1);
+            s1.src="js/mycode.js";
+            alert("jhgf");
+            justDo();*/
+        </script>
+    </body>
+</html>

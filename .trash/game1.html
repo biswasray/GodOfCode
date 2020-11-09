@@ -1,0 +1,229 @@
+<html>
+    <body>
+        <center>
+            <canvas id="can" height="480" width="800"  onmousedown="startM(event)" onmousemove="kuch(event)" onmouseup="endM(event)">Not supported</canvas>
+        </center><br/>
+        <p id="p1"></p><br/>
+        <img src="images/headngun0.png"/>
+        <img src="images/body0.png"/>
+
+        <script>
+            var canvas=document.getElementById("can");
+            var p1=document.getElementById("p1");
+            var con=canvas.getContext("2d");
+            var bulls=[];
+            var deb=0;
+            class Rectangle {
+                constructor(a,b,c,d) {
+                    this.left=a;
+                    this.top=b;
+                    this.rigth=c;
+                    this.bottom=d;
+                    this.width=c-a;
+                    this.height=d-b;
+                    //alert("create");
+                }
+                change(a,b,c,d) {
+                    this.left=a;
+                    this.top=b;
+                    this.rigth=c;
+                    this.bottom=d;
+                }
+                collideWith(r) {
+                    //p1.innerHTML="check"+r.left+" "+r.top+" "+r.rigth+" "+r.bottom;
+                    /*if((r.left>=this.left&&r.left<=this.rigth&&r.top>=this.top&&r.top<=this.bottom)) {
+                        alert("coll1");
+                        return true;
+                    }
+                    else if((r.rigth>=this.left&&r.rigth<=this.rigth&&r.bottom>=this.top&&r.bottom<=this.bottom)) {
+                        alert("coll2");
+                        return true;
+                    }
+                    return false;*/
+                    if(r.left > this.width + this.left || this.left > r.width + r.left || r.top > this.height + this.top || this.top > r.height + r.top) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            class Player {
+                constructor(a,b) {
+                    this.im1=new Image();
+                    this.im2=new Image();
+                    this.b=false;
+                    this.front =true;
+                    this.im1.src="images/body0.png";
+                    this.im2.src="images/headngun0.png";
+                    this.x=a;
+                    this.y=b;
+                    this.angle=0;
+                    //super(this.x,this.y,this.x+128,this.y+128);
+                    this.rect=new Rectangle(this.x,this.y,this.x+128,this.y+128);
+                }
+                cX() {return this.x+60;}
+                cY() {return this.y+45;}
+                draw() {
+                    //con.drawImage(this.im1,this.x,this.y,128,128);
+                    con.save();
+                    if(this.angle>=Math.PI/2||this.angle<-Math.PI/1.5) {
+                        con.translate(this.x,this.y);
+                        con.scale(-1,1);
+                        con.drawImage(this.im1,-120,0,128,128);
+                    }
+                    else {
+                        con.translate(this.x,this.y);
+                        con.drawImage(this.im1,0,0,128,128);
+                    }
+                    con.restore();
+                    con.save();
+                    if(this.angle>=Math.PI/2||this.angle<-Math.PI/1.5) {
+                        con.translate(this.x+60,this.y+20);
+                        con.scale(-1,1);
+                        con.rotate(Math.PI-this.angle);
+                        con.drawImage(this.im2,-60,-20,128,128);
+                        
+                    }
+                    else {
+                        con.translate(this.x+60,this.y+20);
+                        con.rotate(this.angle);
+                        con.drawImage(this.im2,-60,-20,128,128);
+                        
+                    }
+                    //con.drawImage(this.im2,-60,-20,128,128);
+                    con.restore();
+                }
+                fire(rad) {
+                    if(rad>=Math.PI/2||rad<-Math.PI/1.5) {
+                        var rat=rad;
+                        rad=-(Math.PI+rad);
+                        bulls.push(new Bullet(this.x+60-(61.33*Math.cos(rad))-(25*Math.sin(-rad)),this.y+20+(25*Math.cos(rad))+(61.33*Math.sin(rad)),(10*Math.cos(rat)),(10*Math.sin(rat))));
+                    }
+                    else {
+                        bulls.push(new Bullet(this.x+60+(61.33*Math.cos(rad))+(25*Math.sin(-rad)),this.y+20+(25*Math.cos(rad))+(61.33*Math.sin(rad)),(10*Math.cos(rad)),(10*Math.sin(rad))));
+                    }
+                }
+                rot(rad) {
+                    this.angle=rad;
+                    con.save();
+                    if(rad>=Math.PI/2||rad<-Math.PI/1.5) {
+                        con.translate(this.x,this.y);
+                        con.scale(-1,1);
+                        con.drawImage(this.im1,-120,0,128,128);
+                    }
+                    else {
+                        con.translate(this.x,this.y);
+                        con.drawImage(this.im1,0,0,128,128);
+                    }
+                    con.restore();
+                    con.save();
+                    if(rad>=Math.PI/2||rad<-Math.PI/1.5) {
+                        con.translate(this.x+60,this.y+20);
+                        con.scale(-1,1);
+                        con.rotate(Math.PI-rad);
+                        con.drawImage(this.im2,-60,-20,128,128);
+                        
+                    }
+                    else {
+                        con.translate(this.x+60,this.y+20);
+                        con.rotate(rad);
+                        con.drawImage(this.im2,-60,-20,128,128);
+                        
+                    }
+                    //con.drawImage(this.im2,-60,-20,128,128);
+                    con.restore();
+                }
+                getA() { return this.angle;}
+                setA(a) { this.angle=a;}
+            }
+            class Bullet{
+                constructor(a,b,c,d) {
+                    this.x=a;
+                    this.y=b;
+                    this.vx=c;
+                    this.vy=d;
+                    //super(this.x-3,this.y-3,this.x+3,this.y+3);
+                    this.rect=new Rectangle(this.x-3,this.y-3,this.x+3,this.y+3);
+                }
+                draw() {
+                    con.beginPath();
+                    con.fillStyle="red";
+                    con.arc(this.x,this.y,3,0,2*Math.PI);
+                    con.fill();
+                    con.closePath();
+                    this.x+=this.vx;
+                    this.y+=this.vy;
+                    this.rect.change(this.x-3,this.y-3,this.x+3,this.y+3);
+                    //p1.innerHTML="draw"+deb;
+                    //deb++;
+                }
+                getX() {return this.x; }
+                getY() {return this.y; }
+            }
+            var player=new Player(50,canvas.height-128);
+            var enemy=new Player(canvas.width-50-128,canvas.height-128);
+            enemy.setA(-Math.PI+0.2);
+            function drawBackground() {
+                con.clearRect(0,0,canvas.width,canvas.height);
+                con.strokeStyle="black";
+                con.strokeRect(0,0,canvas.width,canvas.height);
+                /*for(var i=0;i<bulls.length;i++) {
+                    bulls[i].draw();
+                }*/
+                bulls.forEach(t => {
+                    t.draw();
+                });
+                enemy.draw();
+                /*for (t in bulls) {
+                    t.draw();
+                }*/
+            }
+            drawBackground();
+            player.draw();
+            enemy.draw();
+            function startM(e) {
+                b=true;
+            }
+            function endM(e) {
+                var tx=e.clientX-canvas.offsetLeft;
+                var ty=e.clientY-canvas.offsetTop;
+                var dy=ty-player.cY();
+                var dx=tx-player.cX();
+                player.fire(Math.atan2(dy,dx));
+                b=false;
+            }
+            function kuch(e) {
+                if(b) {
+                    var tx=e.clientX-canvas.offsetLeft;
+                    var ty=e.clientY-canvas.offsetTop;
+                    var dy=ty-player.cY();
+                    var dx=tx-player.cX();
+                    drawBackground();
+                    player.rot(Math.atan2(dy,dx));
+                    //p1.innerHTML=(180/Math.PI)*Math.atan(dy/dx)+"   "+dx+"  "+dy;
+                }
+            }
+            function bullCheck() {
+                //var temb=[];
+                for(var i=0;i<bulls.length;i++) {
+                    if(bulls[i].getX()<0||bulls[i].getX()>canvas.width||bulls[i].getY()<0||bulls[i].getY()>canvas.height) {
+                        bulls.splice(i,1);
+                        //p1.innerHTML="slice"+bulls.length;
+                    }
+                    else if(bulls[i].rect.collideWith(enemy.rect)) {
+                        bulls.splice(i,1);
+                        p1.innerHTML="boom"+bulls.length;
+                    }
+                }
+                
+            }
+            function drawFrame() {
+                window.requestAnimationFrame(drawFrame,canvas);
+                drawBackground();
+                player.rot(player.getA());
+                bullCheck();
+                //p1.innerHTML=bulls.length;
+            }
+            drawFrame();
+        </script>
+    </body>
+</html>

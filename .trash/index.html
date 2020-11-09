@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Please wait...</title>
+        <style>
+            @keyframes rainbow {
+                0% {background-position: 0% 100%;}
+                50% {background-position: 100% 200%;}
+                100% {background-position: 0% 100%;}
+            }
+            .bar {
+                height: 5px;
+                width: 100%;
+                margin-top: 20px;
+                background: linear-gradient(124deg,#ff2400,#e81d1d,#e8b71d,#e3e81d,#1de840,#1ddde8,#2b1de8,#dd00f3,#dd0088);
+                background-size: 900% 900%;
+                animation: rainbow 4s ease infinite;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bar" id="b"></div><br/>
+        <center>
+            <canvas id="can" height="400" width="400">Not Supported</canvas><br/>
+            <font color="#ff0022"><p>Under construction</p></font>
+        </center>
+        <script>
+            var can=document.getElementById("can");
+            var con=can.getContext("2d");
+            con.font="38pt Cooper black";
+            con.fillStyle="blue";
+            con.strokeStyle="#555500";
+            //con.strokeWidth="2px";
+            con.fillText("God of Code",can.width/2-150,can.height/2+15);
+            con.strokeText("God of Code",can.width/2-150,can.height/2+15);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/prism.css"/>
+        <script src="js/prism.js"></script>
+        <style>
+            .book-container {
+                width: 70%;
+                height: 200px;
+                margin: 2%;
+                text-align: center;
+                background-color: rgb(240, 240, 240);
+                box-shadow:  2px 2px 2px rgb(255, 255, 255), -2px -2px 2px rgb(211, 211, 211);
+                border-radius: 20px;
+            }
+            .photonn {
+                float: left;
+                margin: 2.5%;
+                width: 20%;
+                height: 85%;
+                border-radius: 20px;
+                display: inline-block;
+            }
+            .bookn {
+                width: 60%;
+                height: 85%;
+                padding: auto;
+                margin: 2.5%;
+                float: right;
+                background-color: rgb(250, 250, 250);
+                border-radius: 20px;
+                font-size:20px;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="head"><p>God of Code</p>   </div>
+            <ul class="mylist">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="javascript:alert('Under construction');">Codings</a></li>
+                <li><a href="javascript:alert('Under construction');">About us</a></li>
+                <li><a href="javascript:alert('Under construction');">Contact us</a></li>
+            </ul>
+            <div class="A">
+                <h1 class="book-name">All Books</h1>
+                <div class="B">
+                    <center id="blockContainer">
+                        <!--div class="book-container">
+                            <img class="photonn" src="books/image/coa.pdf.png"/>
+                            <a href="book-single.html?i=2">
+                                <div class="bookn">
+                                    <p>Computer organisation & architecture</p>
+                                    <p><font color="#ff0000">Author : </font>William Staling</p>
+                                    <p><font color="#ff0000">Edition : </font>9th edition</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="book-container">
+                            <img class="photonn" src="books/image/coa.pdf.png"/>
+                            <a href="book-single.html?i=2">
+                                <div class="bookn">
+                                    <p>Computer organisation & architecture</p>
+                                    <p>Author : William Staling</p>
+                                    <p>Edition : 9th edition</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="book-container">
+                            <img class="photonn" src="books/image/coa.pdf.png"/>
+                            <a href="book-single.html?i=2">
+                                <div class="bookn">
+                                    <p>Computer organisation & architecture</p>
+                                    <p>Author : William Staling</p>
+                                    <p>Edition : 9th edition</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="book-container">
+                            <img class="photonn" src="books/image/coa.pdf.png"/>
+                            <a href="book-single.html?i=2">
+                                <div class="bookn">
+                                    <p>Computer organisation & architecture</p>
+                                    <p>Author : William Staling</p>
+                                    <p>Edition : 9th edition</p>
+                                </div>
+                            </a>
+                        </div-->
+                    </center>
+                </div>
+            </div>
+        </div>
+        <script src="json/data.json"></script>
+        <script>
+            var c=new URLSearchParams(window.location.search).get("category");
+            var centerB=document.getElementById("blockContainer");
+            var dat=JSON.parse(book);
+            if(c==undefined) {
+                document.getElementsByClassName("book-name")[0].innerHTML="All Books";
+                for(var i=0;i<dat.length;i++) {
+                    centerB.innerHTML+='<div class="book-container">\n'+
+                    '<img class="photonn" src="'+dat[i].src+'image.png"/>\n'+
+                    '<a href="'+dat[i].src+'book-single.html">\n'+
+                    '<div class="bookn">\n'+
+                    '<p>'+dat[i].name+'</p>\n'+
+                    '<p><font color="#ff0000">Author : </font>'+dat[i].author+'</p>\n'+
+                    '<p><font color="#ff0000">Edition : </font>'+dat[i].edition+'</p>\n'+
+                    '</div>\n</a>\n</div>\n';
+                }
+            }
+            else {
+                document.getElementsByClassName("book-name")[0].innerHTML=c;
+                for(var i=0;i<dat.length;i++) {
+                    if(c==dat[i].catagory) {
+                        centerB.innerHTML+='<div class="book-container">\n'+
+                        '<img class="photonn" src="'+dat[i].src+'image.png"/>\n'+
+                        '<a href="'+dat[i].src+'book-single.html">\n'+
+                        '<div class="bookn">\n'+
+                        '<p>'+dat[i].name+'</p>\n'+
+                        '<p><font color="#ff0000">Author : </font>'+dat[i].author+'</p>\n'+
+                        '<p><font color="#ff0000">Edition : </font>'+dat[i].edition+'</p>\n'+
+                        '</div>\n</a>\n</div>\n';
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
